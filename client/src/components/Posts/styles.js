@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   mainContainer: {
@@ -6,7 +6,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
   },
   smMargin: {
-    margin: theme.spacing(1),
+    margin: '8px',
   },
   actionDiv: {
     textAlign: 'center',
