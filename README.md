@@ -1,3 +1,3 @@
 # Social-Media-Memories
 
-![gifs/Memories-digital-diary.gif]
+![File Path for gif](gifs/Memories-digital-diary.gif)
