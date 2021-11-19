@@ -20,13 +20,16 @@ function App() {
     return (
         <Container maxWidth='lg'>
             <AppBar className={classes.appBar} position='static' color='inherit'>
-                <Typography className={classes.heading} variant='h2' align='center'>Memories</Typography>
-                <img className={classes.image} src={memories} alt='memories' height='30' />
+                <Typography className={classes.heading} variant='h2'>
+                    Memories
+                    <img className={classes.image} src={memories} alt='memories' height='30' />
+                </Typography>
+
             </AppBar>
             <Grow in>
                 <Container>
-                    <Grid container justify='space-between' alignItems='stretch' spacing={3}>
-                        <Grid item xs={12} sm={8}>
+                    <Grid className={classes.mainContainer} container justifyContent='space-between' alignItems='stretch' spacing={3}>
+                        <Grid item xs={12} sm={6}>
                             <Posts setCurrId={setCurrId} />
                         </Grid>
                         <Grid item xs={12} sm={4}>
