@@ -1,44 +1,20 @@
-import { useState, useEffect } from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
-import Posts from './components/Posts/Posts';
-import Form from './components/Form/Form';
-import { getPosts } from './actions/posts'
-import { useDispatch } from 'react-redux';
-import memories from './images/memories.png';
-import useStyles from './styles';
+import { Container } from '@mui/material';
+import Navbar from './components/Navbar/Navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './components/Home/Home';
+import Auth from './components/Auth/Auth';
 
 function App() {
-    const [currId, setCurrId] = useState(null);
-    const classes = useStyles();
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [currId, dispatch]);
-
     return (
-        <Container maxWidth='lg'>
-            <AppBar className={classes.appBar} position='static' color='inherit'>
-                <Typography className={classes.heading} variant='h2'>
-                    Memories
-                    <img className={classes.image} src={memories} alt='memories' height='30' />
-                </Typography>
-
-            </AppBar>
-            <Grow in>
-                <Container>
-                    <Grid className={classes.mainContainer} container justifyContent='space-between' alignItems='stretch' spacing={3}>
-                        <Grid item xs={12} sm={6}>
-                            <Posts setCurrId={setCurrId} />
-                        </Grid>
-                        <Grid item xs={12} sm={4}>
-                            <Form currId={currId} setCurrId={setCurrId} />
-                        </Grid>
-                    </Grid>
-                </Container>
-            </Grow>
-        </Container>
+        <BrowserRouter>
+            <Container maxWidth='lg'>
+                <Navbar />
+                <Routes>
+                    <Route path='/' exact element={<Home />} />
+                    <Route path='/auth' exact element={<Auth />} />
+                </Routes>
+            </Container>
+        </BrowserRouter>
     )
 }
 

@@ -19,9 +19,13 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
     width: '97%',
     margin: '10px',
+    padding: '7px',
+    border: 1,
+    borderColor: 'blue',
+    borderStyle: 'solid',
+    borderRadius: '5px'
   },
   buttonSubmit: {
     marginBottom: 10,
-    padding: '60px',
   },
 }));
