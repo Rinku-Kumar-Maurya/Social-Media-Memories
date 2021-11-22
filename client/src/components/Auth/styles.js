@@ -21,11 +21,15 @@ export default makeStyles((theme) => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: '28px',
   },
+  formTitle: {
+    marginBottom: '10px',
+  },
   submit: {
     padding: '10px',
     margin: '24px 0px 16px',
   },
   googleButton: {
     marginBottom: '16px',
+    padding: '10px',
   },
 }));

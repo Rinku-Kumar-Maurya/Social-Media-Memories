@@ -1,11 +1,11 @@
 import React from 'react'
 import { TextField, InputAdornment, Grid, IconButton } from '@mui/material'
-import {Visibility, VisibilityOff} from '@mui/icons-material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-const Input = ({half, name, label, autoFocus, type, handleShowPassword, handleChange}) => {
+const Input = ({ half, name, label, autoFocus, type, handleShowPassword, handleChange }) => {
     return (
         <Grid item xs={12} sm={half ? 6 : 12}>
-            <TextField 
+            <TextField
                 name={name}
                 onChange={handleChange}
                 variant='outlined'
@@ -14,7 +14,7 @@ const Input = ({half, name, label, autoFocus, type, handleShowPassword, handleCh
                 label={label}
                 autoFocus={autoFocus}
                 type={type}
-                InputProps={name === 'password' && {
+                InputProps={name === 'password' ? {
                     endAdornment: (
                         <InputAdornment position='end'>
                             <IconButton onClick={handleShowPassword}>
@@ -22,7 +22,7 @@ const Input = ({half, name, label, autoFocus, type, handleShowPassword, handleCh
                             </IconButton>
                         </InputAdornment>
                     )
-                }}
+                } : null}
             />
         </Grid>
     )
