@@ -7,7 +7,6 @@ import { createPost, updatePost } from '../../actions/posts';
 
 function Form({ currId, setCurrId }) {
     const [postData, setPostData] = useState({
-        creator: '',
         title: '',
         message: '',
         tags: '',
@@ -15,6 +14,7 @@ function Form({ currId, setCurrId }) {
     });
 
     const post = useSelector((state) => currId ? state.posts.find((p) => p._id === currId) : null);
+    const user = JSON.parse(localStorage.getItem('profile'));
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -26,10 +26,10 @@ function Form({ currId, setCurrId }) {
         e.preventDefault();
 
         if (currId) {
-            dispatch(updatePost(currId, postData));
+            dispatch(updatePost(currId, { ...postData, name: user?.result?.name }));
         }
         else {
-            dispatch(createPost(postData));
+            dispatch(createPost({ ...postData, name: user?.result?.name }));
         }
 
         clear();
@@ -38,7 +38,6 @@ function Form({ currId, setCurrId }) {
     const clear = () => {
         setCurrId(null);
         setPostData({
-            creator: '',
             title: '',
             message: '',
             tags: '',
@@ -46,11 +45,20 @@ function Form({ currId, setCurrId }) {
         });
     }
 
+    if(!user?.result?.name){
+        return (
+            <Paper className={classes.paper}>
+                <Typography variant='h6' align='center'>
+                    Please Sign in to create your own memories and like other's posts.
+                </Typography>
+            </Paper>
+        )
+    }
+
     return (
         <Paper className={classes.paper}>
             <form className={`${classes.root} ${classes.form}`} autoComplete='off' noValidate onSubmit={handleSubmit}>
                 <Typography variant='h6'>Creating a Memory</Typography>
-                <TextField name='creator' variant='outlined' label='Creator' fullWidth value={postData.creator} onChange={(e) => setPostData({ ...postData, creator: e.target.value })} />
                 <TextField name='title' variant='outlined' label='Title' fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
                 <TextField name='message' variant='outlined' label='Message' fullWidth multiline={true} minRows={3} value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
                 <TextField name='tags' variant='outlined' label='Tags (Comma separated)' fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
