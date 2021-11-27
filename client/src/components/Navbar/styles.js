@@ -1,44 +1,96 @@
 import { makeStyles } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
 import { deepPurple } from '@mui/material/colors';
 
-export default makeStyles((theme) => ({
-  appBar: {
-    borderRadius: 10,
-    margin: '30px 0',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '10px 20px',
-  },
-  heading: {
-    padding: '5px',
-    color: 'rgba(0,183,255, 1)',
-    textDecoration: 'none',
-  },
-  image: {
-    marginLeft: '15px',
-  },
-  toolbar: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    width: '300px',
-  },
-  profile: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    width: '300px',
-  },
-  userName: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  brandContainer: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  purple: {
-    color: deepPurple[400],
-    backgroundColor: deepPurple[500],
-  },
-}));
+
+
+export default makeStyles(() => {
+  let theme = createTheme({
+    palette: {
+      primary: {
+        main: '#0052cc',
+      },
+      secondary: {
+        main: '#edf2ff',
+      },
+    },
+  });
+  
+  theme = createTheme(theme, {
+    palette: {
+      info: {
+        main: theme.palette.secondary.main,
+      },
+    },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 900,
+        lg: 1200,
+        xl: 1536,
+      },
+    },
+  });
+
+  return ({
+    appBar: {
+      borderRadius: 15,
+      margin: '30px 0',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '10px 50px',
+      [theme.breakpoints.down('sm')]: {
+        flexDirection: 'column',
+      },
+    },
+    heading: {
+      color: theme.palette.primary.main,
+      textDecoration: 'none',
+      fontSize: '2em',
+      fontWeight: 300,
+    },
+    image: {
+      marginLeft: '10px',
+      marginTop: '5px',
+    },
+    toolbar: {
+      display: 'flex',
+      justifyContent: 'flex-end',
+      width: '400px',
+      [theme.breakpoints.down('sm')]: {
+        width: 'auto',
+      },
+    },
+    profile: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '400px',
+      alignItems: 'center',
+      [theme.breakpoints.down('sm')]: {
+        width: 'auto',
+        marginTop: 20,
+        justifyContent: 'center',
+      },
+    },
+    logout: {
+      marginLeft: '20px',
+    },
+    userName: {
+      display: 'flex',
+      alignItems: 'center',
+      textAlign: 'center',
+    },
+    brandContainer: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+    purple: {
+      color: theme.palette.getContrastText(deepPurple[500]),
+      backgroundColor: deepPurple[500],
+    },
+  })
+})
+

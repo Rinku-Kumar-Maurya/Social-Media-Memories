@@ -16,5 +16,11 @@ export default makeStyles((theme) => ({
     ['@media (max-width:900px)']: {
       flexDirection: 'column-reverse',
     },
+    padding: '25px'
   },
+  searchButton: {
+    background: '#1976d2',
+    borderRadius: 4,
+    padding: '5px'
+  }
 }));
