@@ -11,4 +11,8 @@ export default makeStyles((theme) => ({
   actionDiv: {
     textAlign: 'center',
   },
+  circularProgress: {
+    margin: 'auto',
+    width: 'max-content'
+  }
 }));

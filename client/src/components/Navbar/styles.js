@@ -59,7 +59,7 @@ export default makeStyles(() => {
     toolbar: {
       display: 'flex',
       justifyContent: 'flex-end',
-      width: '400px',
+      width: '340px',
       [theme.breakpoints.down('sm')]: {
         width: 'auto',
       },

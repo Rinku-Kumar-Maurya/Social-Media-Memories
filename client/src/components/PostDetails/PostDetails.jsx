@@ -1,13 +1,16 @@
-import React from 'react'
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles';
+import PostDetailsWraped from './PostDetailsWraped';
+
 
 const PostDetails = () => {
-    console.log('Post Details');
-
+    var theme = createTheme();
+    theme = responsiveFontSizes(theme);
+    
     return (
-        <div>
-            Post Details
-        </div>
+        <ThemeProvider theme={theme}>
+            <PostDetailsWraped />
+        </ThemeProvider>
     )
 }
 
-export default PostDetails
+export default PostDetails;

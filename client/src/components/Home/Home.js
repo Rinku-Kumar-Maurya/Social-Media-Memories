@@ -20,20 +20,16 @@ const Home = () => {
     const dispatch = useDispatch();
     const query = useQuery();
     const navigate = useNavigate();
-    const page = query.get('page') || 1;
+    const page = (query.get('page') || 1);
     const searchQuery = query.get('searchQuery');
     const [search, setSearch] = useState('');
     const [tags, setTags] = useState([]);
 
     const classes = useStyles();
 
-    useEffect(() => {
-        dispatch(getPosts());
-    }, [currId, dispatch]);
-
     const searchPost = () => {
         if (search.trim() || tags) {
-            dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
+            dispatch(getPostsBySearch({ search: search, tags: tags.join(',') }));
             navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
         }
         else {
@@ -79,11 +75,13 @@ const Home = () => {
                             />
                             <Button onClick={searchPost} className={classes.searchButton} color='primary' variant='contained'>Search</Button>
                         </AppBar>
+                        <Form currId={currId} setCurrId={setCurrId} />
+                        {(!searchQuery && !tags.length) && (
+                            <Paper elevation={4} className={classes.pagination}>
+                                <Paginate page={page} />
+                            </Paper>
+                        )}
 
-                        <Paper elevation={6}>
-                            <Form currId={currId} setCurrId={setCurrId} />
-                            <Paginate />
-                        </Paper>
                     </Grid>
                 </Grid>
             </Container>

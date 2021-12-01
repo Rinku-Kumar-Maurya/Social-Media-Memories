@@ -13,7 +13,7 @@ function Form({ currId, setCurrId }) {
         selectedFile: ''
     });
 
-    const post = useSelector((state) => currId ? state.posts.find((p) => p._id === currId) : null);
+    const post = useSelector((state) => currId ? state.posts.posts.find((p) => p._id === currId) : null);
     const user = JSON.parse(localStorage.getItem('profile'));
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -56,7 +56,7 @@ function Form({ currId, setCurrId }) {
     }
 
     return (
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} elevation={4}>
             <form className={`${classes.root} ${classes.form}`} autoComplete='off' noValidate onSubmit={handleSubmit}>
                 <Typography variant='h6'>Creating a Memory</Typography>
                 <TextField name='title' variant='outlined' label='Title' fullWidth value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
