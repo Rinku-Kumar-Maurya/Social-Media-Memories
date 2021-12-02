@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Paper, CircularProgress, Typography, Divider } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
+
+import CommentSection from './CommentSection';
 import { useParams, useNavigate } from 'react-router';
 import { getPost, getPostsBySearch } from '../../actions/posts';
 
@@ -20,17 +22,11 @@ const PostDetailsWraped = () => {
         dispatch(getPost(id));
     }, [id])
 
-    // useEffect(() => {
-    //     if (post) {
-    //         dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
-    //     }
-    // }, [post])
-
-    // useEffect(() => {
-    //     if (post) {
-    //       dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
-    //     }
-    //   }, [post]);
+    useEffect(() => {
+        if (post) {
+            dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
+        }
+    }, [post]);
 
     if (!post) return null;
 
@@ -51,12 +47,12 @@ const PostDetailsWraped = () => {
                     <Typography className={classes.spacing} variant="h3" component="h2">{post.title}</Typography>
                     <Typography className={classes.spacing} gutterBottom variant="h6" color="textSecondary" component="h3">{post.tags.map((tag) => `#${tag} `)}</Typography>
                     <Typography className={classes.spacing} gutterBottom variant="body1" component="p">{post.message}</Typography>
+                    {/* <Divider style={{ margin: '20px 0' }} />
+                    <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography> */}
                     <Typography className={classes.spacing} variant="h6">Created by: {post.name}</Typography>
                     <Typography className={classes.spacing} variant="body1">{moment(post.createdAt).fromNow()}</Typography>
                     <Divider style={{ margin: '20px 0' }} />
-                    <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
-                    <Divider style={{ margin: '20px 0' }} />
-                    <Typography variant="body1"><strong>Comments - coming soon!</strong></Typography>
+                    <CommentSection post={post} />
                     <Divider style={{ margin: '20px 0' }} />
                 </div>
                 <div className={classes.imageSection}>

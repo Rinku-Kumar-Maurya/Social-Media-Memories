@@ -4,6 +4,7 @@ import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './styles';
 import { createPost, updatePost } from '../../actions/posts';
+import { useNavigate } from 'react-router';
 
 function Form({ currId, setCurrId }) {
     const [postData, setPostData] = useState({
@@ -16,6 +17,7 @@ function Form({ currId, setCurrId }) {
     const post = useSelector((state) => currId ? state.posts.posts.find((p) => p._id === currId) : null);
     const user = JSON.parse(localStorage.getItem('profile'));
     const classes = useStyles();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -29,7 +31,7 @@ function Form({ currId, setCurrId }) {
             dispatch(updatePost(currId, { ...postData, name: user?.result?.name }));
         }
         else {
-            dispatch(createPost({ ...postData, name: user?.result?.name }));
+            dispatch(createPost({ ...postData, name: user?.result?.name }, navigate));
         }
 
         clear();

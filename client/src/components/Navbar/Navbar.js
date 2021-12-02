@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import decode from 'jwt-decode';
 import { AppBar, Avatar, Button, Typography, Toolbar } from '@mui/material'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
@@ -16,17 +16,17 @@ const Navbar = () => {
     const location = useLocation();
 
     const logout = () => {
-        dispatch({type: 'LOGOUT'});
-        navigate('/');
+        dispatch({ type: 'LOGOUT' });
+        navigate('/auth');
         setUser(null);
     }
 
     useEffect(() => {
         const token = user?.token;
         //JWT..
-        if(token) {
+        if (token) {
             const decodedToken = decode(token);
-            if(decodedToken.exp * 1000 < new Date().getTime()){
+            if (decodedToken.exp * 1000 < new Date().getTime()) {
                 logout();
             }
         }
@@ -40,7 +40,7 @@ const Navbar = () => {
                 <img src={memoriesText} alt='icon' height='45px' />
                 <img src={memoriesLogo} alt='icon' height='40px' className={classes.image} />
             </Link>
-            
+
             <Toolbar className={classes.toolbar} >
                 {user ? (
                     <div className={classes.profile}>
@@ -48,8 +48,10 @@ const Navbar = () => {
                         <Typography className={classes.userName} variant='h6'>{user.result.name}</Typography>
                         <Button variant='contained' className={classes.logout} color='secondary' onClick={logout}>Logout</Button>
                     </div>
-                ): (
-                    <Button component={Link} to='/auth' variant='contained' color='primary'>Sign In</Button>
+                ) : (
+                    <Link to='/auth'>
+                        <Button variant='contained' color='primary'>Sign In</Button>
+                    </Link>
                 )}
             </Toolbar>
         </AppBar>

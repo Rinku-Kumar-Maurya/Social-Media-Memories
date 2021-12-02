@@ -38,5 +38,13 @@ export default makeStyles((theme) => ({
   },
   spacing: {
     margin: '10px 0',
-  }
+  },
+  commentsOuterContainer: {
+    justifyContent: 'space-between',
+  },
+  commentsInnerContainer: {
+    height: '200px',
+    overflowY: 'auto',
+    marginRight: '15px',
+  },
 }));
