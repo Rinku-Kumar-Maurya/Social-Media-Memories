@@ -27,18 +27,20 @@ const CommentSection = ({ post }) => {
     return (
         <div>
             <div className={classes.commentsOuterContainer}>
-                <Typography variant='h6' gutterBottom>Comments</Typography>
-                <div className={classes.commentsInnerContainer} fullWidth>
-                    {comments.map((c, i) => (
-                        <Typography variant='subtitle1' gutterBottom key={i}>
-                            <strong>{c.split(': ')[0]}</strong>
-                            {c.split(':')[1]}
-                        </Typography>
-                    ))}
-                    <div ref={commentsRef} />
+                <div>
+                    <Typography variant='h6' gutterBottom fullWidth>Comments</Typography>
+                    <div className={classes.commentsInnerContainer}>
+                        {comments.map((c, i) => (
+                            <Typography variant='subtitle1' gutterBottom key={i}>
+                                <strong>{c.split(': ')[0]}</strong>
+                                {c.split(':')[1]}
+                            </Typography>
+                        ))}
+                        <div ref={commentsRef} />
+                    </div>
                 </div>
                 {user?.result?.name && (
-                    <div style={{ marginTop: '10px' }}>
+                    <div>
                         <Typography variant='h6' gutterBottom>Write a comment</Typography>
                         <TextField
                             fullWidth

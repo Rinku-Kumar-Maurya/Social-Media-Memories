@@ -40,11 +40,18 @@ export default makeStyles((theme) => ({
     margin: '10px 0',
   },
   commentsOuterContainer: {
+    display: 'flex',
     justifyContent: 'space-between',
+    width: '100%',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+    },
   },
   commentsInnerContainer: {
-    height: '200px',
+    width: '95%',
+    height: '120px',
     overflowY: 'auto',
-    marginRight: '15px',
+    marginRight: '10px',
+    marginBottom: '15px',
   },
 }));
