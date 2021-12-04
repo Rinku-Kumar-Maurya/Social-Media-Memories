@@ -60,16 +60,16 @@ const PostDetailsWraped = () => {
             <Divider style={{ margin: '20px 0' }} />
             <CommentSection post={post} />
             {!!recommendedPosts.length && (
-                <div className={classes.section}>
+                <div>
                     <Divider style={{ margin: '20px 0' }} />
-                    <Typography gutterBottom variant="h5">You might also like:</Typography>
+                    <Typography gutterBottom variant="h5" style={{marginLeft: '15px'}}>You might also like:</Typography>
                     <Divider style={{ margin: '20px 0' }} />
                     <div className={classes.recommendedPosts}>
                         {recommendedPosts.map(({ title, name, message, likes, selectedFile, _id }) => (
                             <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
                                 <Typography gutterBottom variant="h6">{title}</Typography>
                                 <Typography gutterBottom variant="subtitle2">{name}</Typography>
-                                <Typography gutterBottom variant="subtitle2">{message}</Typography>
+                                <Typography gutterBottom variant="subtitle2">{message.substr(0, 200)}...</Typography>
                                 <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography>
                                 <img src={selectedFile} width="200px" />
                             </div>

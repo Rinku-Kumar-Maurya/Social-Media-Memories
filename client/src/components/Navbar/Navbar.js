@@ -17,8 +17,8 @@ const Navbar = () => {
 
     const logout = () => {
         dispatch({ type: 'LOGOUT' });
-        navigate('/auth');
         setUser(null);
+        navigate('/auth');
     }
 
     useEffect(() => {
@@ -49,9 +49,7 @@ const Navbar = () => {
                         <Button variant='contained' className={classes.logout} color='secondary' onClick={logout}>Logout</Button>
                     </div>
                 ) : (
-                    <Link to='/auth'>
-                        <Button variant='contained' color='primary'>Sign In</Button>
-                    </Link>
+                    <Button variant='contained' color='primary' onClick={() => navigate('/auth')}>Sign In</Button>
                 )}
             </Toolbar>
         </AppBar>

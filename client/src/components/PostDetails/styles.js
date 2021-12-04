@@ -42,16 +42,26 @@ export default makeStyles((theme) => ({
   commentsOuterContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '100%',
+    margin: '15px',
+    width: '97%',
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
     },
   },
   commentsInnerContainer: {
-    width: '95%',
     height: '120px',
     overflowY: 'auto',
-    marginRight: '10px',
-    marginBottom: '15px',
+    [theme.breakpoints.up('md')]: {
+      margin: '10px',
+    },
   },
+  commentForm: {
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      margin: '10px',
+    },
+    [theme.breakpoints.down('md')]: {
+      marginTop: '15px',
+    },
+  }
 }));

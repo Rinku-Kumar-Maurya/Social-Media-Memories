@@ -15,8 +15,8 @@ const auth = async (req, res, next) => {
             decodedData = jwt.decode(token);
             req.userId = decodedData?.sub;
         }
-
-        next();
+        
+        // next();
     } catch (error) {
         console.log(error);
     }
